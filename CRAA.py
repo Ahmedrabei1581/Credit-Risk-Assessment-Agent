@@ -86,9 +86,14 @@ translations = {
     }
 }
 
+# التقاط اللغة تلقائياً من رابط الـ iFrame (URL Query Parameters)
+query_params = st.query_params
+url_lang = query_params.get("lang", "en")
+default_index = 1 if url_lang == "ar" else 0
+
 # الشريط الجانبي لاختيار اللغة
 st.sidebar.markdown("### ⚙️ Control Panel / لوحة التحكم")
-lang_choice = st.sidebar.selectbox("Choose Language / اختر اللغة", ["English", "العربية"])
+lang_choice = st.sidebar.selectbox("Choose Language / اختر اللغة", ["English", "العربية"], index=default_index)
 t = translations[lang_choice]
 
 is_rtl = (lang_choice == "العربية")
